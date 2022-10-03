@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <div class="root">{{info}},{{is}},{{numbers.a}},{{numbers.b}}</div>
+        <button @click="numbers.a++">添加</button>
+        <button @click="numbers.b++">添加</button>
+        <button @click="djclick">点击切换</button>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    var vm = new Vue({
+            el: '.root',
+            data: {
+                ishot: true,
+                is: 1,
+                numbers: {
+                    a: 1,
+                    b: 2
+                }
+            },
+            computed: {
+                info() {
+                    return this.ishot ? '炎热' : '凉爽'
+                }
+            },
+            methods: {
+                djclick() {
+                    // console.log("点击了")
+                    this.is++;
+                    this.ishot = !this.ishot;
+                }
+            },
+            watch: { //监听
+                ishot: {
+                    immediate: true, //自动执行
+                    handler(newValue, oldValue) {
+                        console.log("1事件监听:", "旧的", newValue, "新的", oldValue)
+                    }
+                }, // 简写
+                ishot(newValue, oldValue) {
+                    console.log("2事件监听:", "旧的", newValue, "新的", oldValue)
+                },
+                numbers: {
+                    deep: true, // deep: true,  深度监听.
+                    handler() {
+                        console.log("添加成功!!!")
+                    }
+                }
+            },
+
+
+        })
+        // 类似的写法
+    vm.$watch('ishot', {
+            immediate: true, //自动执行
+            handler(newValue, oldValue) {
+                console.log("3事件监听:", "旧的", newValue, "新的", oldValue)
+            }
+        }) // 简写
+    vm.$watch('ishot', function(newValue, oldValue) {
+        console.log("4事件监听:", "旧的", newValue, "新的", oldValue)
+    })
+</script>
+
+</html>

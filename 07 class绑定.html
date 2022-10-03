@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .root {
+        width: 500px;
+        height: 500px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+    
+    .happy {
+        background: coral;
+    }
+    
+    .sad {
+        background: aqua;
+    }
+    
+    .normal {
+        background: blue;
+    }
+    
+    .blank {
+        background-color: black;
+    }
+</style>
+
+<body>
+    <div class="root" v-bind:class="mood" v-bind:style="{fontSize: size+ 'px'}">{{name}}
+        <button @click="bainhuan">点击切换</button>
+        <button @click="add1">点击增加</button>
+        <button @click="delete1">点击减少</button>
+    </div>
+
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    new Vue({
+        el: '.root',
+        data: {
+            name: "练习",
+            mood: "",
+            size: 40,
+        },
+        methods: {
+            bainhuan() {
+                const arr = ['normal', 'sad', 'happy', 'blank'];
+                console.log(Math.floor(Math.random() * 10));
+                // console.log(arr);
+                const index = Math.floor(Math.random() * 4)
+                this.mood = arr[index];
+
+            },
+            add1() {
+                this.size++;
+                console.log(this.size);
+            },
+            delete1() {
+                this.size--;
+                console.log(this.size);
+            }
+        },
+    })
+</script>
+
+</html>

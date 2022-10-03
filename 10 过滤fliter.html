@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <input type="text" v-model="keyWord">
+        <ul v-for="(item, index) in datalist" :key="index">
+            <!-- <ul v-for="(item, index) in datas" :key="index"> -->
+            {{item.name}}--{{item.age}}--{{index}}
+        </ul>
+    </div>
+
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    new Vue({
+        el: ".root",
+        data: {
+            keyWord: '',
+            persons: [{
+                id: '01',
+                name: '李二',
+                age: 18
+            }, {
+                id: '02',
+                name: '李四',
+                age: 19
+            }, {
+                id: '03',
+                name: '李六',
+                age: 20
+            }],
+            car: {
+                name: "奥迪",
+                price: "20w",
+                color: "黑色"
+            },
+            datalist: [],
+        },
+        watch: {
+            keyWord: {
+                immediate: true,
+                handler(val) {
+                    this.datalist = this.persons.filter((p) => {
+                        return p.name.indexOf(val) !== -1
+                    })
+                }
+            },
+            // keyWord(val) {
+            //     this.datalist = this.persons.filter((p) => {
+            //         return p.name.indexOf(val) !== -1
+            //     })
+            // }
+        },
+
+        // computed: {
+        //     datas() {
+        //         return this.persons.filter((p) => {
+        //             return p.name.indexOf(this.keyWord) !== -1
+        //         })
+        //     }
+        // }
+    })
+</script>
+
+</html>

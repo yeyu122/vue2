@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <button @click="add">点击添加</button>
+        <ul v-for="p in persons" :key="p.id">
+            {{ p.name }}--{{p.age}}
+        </ul>
+        <ul v-for="(c,index) in car" :key="index">
+            {{c}}--{{index}}
+        </ul>
+        <ul v-for="(c,index) in src" :key="index">
+            {{c}}--{{index}}
+        </ul>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    new Vue({
+        el: '.root',
+        data: {
+            persons: [{
+                id: '01',
+                name: '李二',
+                age: 18
+            }, {
+                id: '02',
+                name: '李四',
+                age: 19
+            }, {
+                id: '03',
+                name: '李六',
+                age: 20
+            }],
+            car: {
+                name: "奥迪",
+                price: "20w",
+                color: "黑色"
+            },
+            src: "hello,world",
+        },
+        methods: {
+            add() {
+                const p = {
+                    id: '04',
+                    name: '李八',
+                    age: 21,
+                };
+                this.persons.unshift(p);
+            }
+        }
+    })
+</script>
+
+</html>
