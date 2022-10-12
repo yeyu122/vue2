@@ -9,11 +9,28 @@
 </head>
 
 <body>
+    <div class="root">
+        <p>{{n}}</p>
+        <p>放大十倍:<span v-big="n"></span></p>
+        <button @click="n++">点击</button>
+    </div>
 
 </body>
 <script src="./js/vue.js"></script>
 <script>
-    directives
+    new Vue({
+        el: '.root',
+        data: {
+            n: 1,
+        },
+        directives: {
+            big(ele, str) {
+                console.log(ele, str);
+                console.log("ggggggggggg", ele.value, str.value);
+                ele.innerHTML = str.value * 10;
+            }
+        }
+    })
 </script>
 
 </html>

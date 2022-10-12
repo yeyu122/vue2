@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="root">
+        <xuesheng></xuesheng>
+        <school></school>
+        <hello></hello>
+        <hello2></hello2>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    // 创建组件school
+    // Vue.extend需要注意Vue大小写
+    const school = Vue.extend({
+        template: `
+        <div>
+            <p>{{school}}</p>
+            <p>{{name}}</p>
+            <p>{{age}}</p>
+            <button type="" @click='showschool'>点击我</button>
+        </div>
+        `,
+        data() {
+            return {
+                name: 'yeyu',
+                age: '18',
+                school: '文山学院'
+            }
+        },
+        methods: {
+            showschool() {
+                alert(this.school);
+            }
+        },
+    })
+    const hello = Vue.extend({
+        template: `
+			<div>	
+                <hr>
+				<h3>你好啊！{{name}}</h3>
+            </div>
+			`,
+        data() {
+            return {
+                name: 'yeyu'
+            }
+        },
+    })
+
+    const hello2 = Vue.extend({
+            template: `
+            <div>
+                <hr>
+                <p>{{name}}</p>
+                <p>{{a}}</p>
+                <button @click="a++">点击</button>
+            </div>
+        `,
+            data() {
+                return {
+                    name: 'hello2',
+                    a: 1
+                }
+            },
+        })
+        //全局注册组件
+    Vue.component('hello', hello)
+    Vue.component('hello2', hello2)
+    new Vue({
+        el: '.root',
+        // 使用组件components
+        components: {
+            xuesheng: school,
+            school,
+        },
+    })
+</script>
+
+</html>

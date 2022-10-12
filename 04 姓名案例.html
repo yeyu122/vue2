@@ -11,7 +11,7 @@
 <body>
     <div class="root">
         姓:<input type="text" name="" id="name" v-model="firstname"><br><br> 名:
-        <input type="text" name="" id="name" V-model="lastname" @input="showinfo" @keyup="showkey">
+        <input type="text" name="" id="name" V-model.lazy="lastname" @input="showinfo" @keyup="showkey">
         <br><br> 全名: <span>{{fullname}}</span>
     </div>
 </body>
@@ -29,7 +29,6 @@
             },
             showkey(e) {
                 console.log(e.key);
-                console.log(e.keyCode);
                 console.log(e.keyCode);
             }
         },
